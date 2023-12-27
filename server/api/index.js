@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { createAzureFunctionHandler } from 'azure-function-express';
 
-dotenv.config({ path: '.env' });
+dotenv.config();
 
 const app = express();
 app.use(cors());

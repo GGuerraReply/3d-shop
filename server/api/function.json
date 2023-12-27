@@ -17,6 +17,6 @@
       "name": "res"
     }
   ],
-  "scriptFile": "index.js",
+  "scriptFile": "api/index.js",
   "entryPoint": "default"
 }
