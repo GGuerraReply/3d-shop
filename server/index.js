@@ -12,4 +12,4 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello from DALL-E");
 });
 
-app.listen(8080, () => console.log(`Server is listening on port ${process.env.PORT}`));
+app.listen(80, () => console.log(`Server is listening on port ${process.env.PORT}`));
