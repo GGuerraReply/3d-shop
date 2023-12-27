@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { createAzureFunctionHandler } from 'azure-function-express';
 
-dotenv.config();
+dotenv.config({ path: '.env' });
 
 const app = express();
 app.use(cors());
@@ -16,6 +16,9 @@ router.get("/", (req, res) => {
 });
 
 app.use('/api', router);
-app.listen(80, () => console.log(`Server is listening on port 80`));
+
+if (process.env.IS_LOCAL === "true") {
+  app.listen(80, () => console.log(`Server is listening on port 80`));
+}
 
 export default createAzureFunctionHandler(app);
