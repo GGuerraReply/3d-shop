@@ -20,11 +20,11 @@ const CameraRig = ({ children }) => {
         targetPosition = [0, 0, 2];
       }
       if(isMobile){
-        targetPosition = [0, 0.2, 2.5];
+        targetPosition = [0, 0.5, 2.5];
       }
     } else {
       if(isMobile){
-        targetPosition = [0, 0.2, 2.5];
+        targetPosition = [0, 0, 2.5];
       } else {
         targetPosition = [0, 0, 2];
       }
