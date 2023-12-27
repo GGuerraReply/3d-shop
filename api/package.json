@@ -1,15 +1,11 @@
 {
-  "name": "api",
+  "name": "functions",
   "version": "1.0.0",
   "description": "",
-  "main": "hello/index.js",
   "scripts": {
     "start": "func start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests yet...\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "azure-function-express": "^2.0.0",
     "cloudinary": "^1.41.1",
@@ -18,7 +14,7 @@
     "express": "^4.18.2",
     "mongoose": "^8.0.3",
     "nodemon": "^3.0.2",
-    "openai": "^4.24.1",
-    "serverless-express": "^2.0.12"
-  }
+    "openai": "^4.24.1"
+  },
+  "devDependencies": {}
 }
