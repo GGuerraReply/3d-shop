@@ -17,8 +17,4 @@ router.get("/", (req, res) => {
 
 app.use('/api', router);
 
-if (process.env.IS_LOCAL === "true") {
-  app.listen(80, () => console.log(`Server is listening on port 80`));
-}
-
 export default createAzureFunctionHandler(app);
