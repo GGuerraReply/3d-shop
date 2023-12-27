@@ -3,7 +3,7 @@ const { createAzureFunctionHandler } = require('azure-function-express');
 
 const app = express();
 
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
   res.json({
     text: "Hello from the API"
   });
