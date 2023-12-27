@@ -25,3 +25,4 @@ dist-ssr
 
 *.settings.json
 .env
+*.bck.js
