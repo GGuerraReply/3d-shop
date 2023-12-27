@@ -1,12 +1,14 @@
-const express = require('express');
-const { createAzureFunctionHandler } = require('azure-function-express');
+const createHandler = require("azure-function-express").createHandler;
+const express = require("express");
 
+// Create express app as usual
 const app = express();
-
-app.get('/', (req, res) => {
+app.get("/api/:foo/:bar", (req, res) => {
   res.json({
-    text: "Hello from the API"
+    foo  : req.params.foo,
+    bar  : req.params.bar
   });
 });
 
-module.exports = createAzureFunctionHandler(app);
+// Binds the express app to an Azure Function handler
+module.exports = createHandler(app);
