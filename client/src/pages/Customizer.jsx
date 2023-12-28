@@ -10,6 +10,7 @@ import { downloadCanvasToImage, reader } from '../config/helpers'
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants'
 import { fadeAnimation, slideAnimation } from '../config/motion'
 import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components'
+import CanvasModel from '../canvas';
 
 const Customizer = () => {
   const snap = useSnapshot(state);
@@ -109,6 +110,10 @@ const Customizer = () => {
     })
   }
 
+  const handleDownload = () => { 
+    downloadCanvasToImage(CanvasModel.current);
+  }
+
   const readFile = (type) => {
     reader(file).then((result) => {
       handleDecals(type, result);
@@ -165,9 +170,20 @@ const Customizer = () => {
                 tab={tab}
                 isFilterTab
                 isActiveTab={activeFilterTab[tab.name]}
-                handleClick={() => handleActiveFilterTab(tab.name)}
+                handleClick={() => tab.name === "downlaod" ? handleDownload() : handleActiveFilterTab(tab.name)}
               />
             ))} 
+
+            <Tab 
+              key="download"
+              tab={{
+                name: "download",
+                icon: download,
+              }}
+              isFilterTab
+              isActiveTab={false}
+              handleClick={() => handleDownload()}
+            />
           </motion.div>
         </>
       )}
