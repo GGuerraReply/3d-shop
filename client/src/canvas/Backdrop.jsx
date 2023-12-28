@@ -16,7 +16,7 @@ const Backdrop = () => {
       resolution={1024}
       colorBlend={1.5}
       temporal
-      frames={60}
+      frames={30}
       alphaTest={0.19}
       scale={2}
       color={snap.color}
