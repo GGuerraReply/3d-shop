@@ -7,9 +7,8 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "engines": { 
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+  "engines": {
+    "node": "16.x"
   },
   "dependencies": {
     "@azure/openai": "^1.0.0-beta.8",
