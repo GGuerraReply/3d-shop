@@ -1,9 +1,9 @@
 const config = {
   development: {
-    backendUrl: "http://localhost:8080/api/v1/dalle",
+    backendUrl: "http://localhost:7071/api/dalle",
   },
   production: {
-    backendUrl: "https://devswag.onrender.com/api/v1/dalle",
+    backendUrl: "https://delightful-glacier-03463f303.4.azurestaticapps.net/api/dalle",
   },
 };
 

@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+//app.options('*', cors());
 app.use(express.json({ limit: "50mb" }));
 
 // You will need to set these environment variables or edit the following values

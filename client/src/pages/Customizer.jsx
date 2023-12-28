@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { snapshot, useSnapshot } from 'valtio'
+import axios from 'axios';
 
 import config from '../config/config'
 import state from '../store'
@@ -51,6 +52,17 @@ const Customizer = () => {
 
     try {
       //Call backend to generate AI powered image
+      setGeneratingImg(true);
+      const response = await axios.post("/api/dalle", {
+        prompt: prompt,
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+      handleDecals(type, `data:image/png;base64,${data}`);
     } catch (error) {
       alert(error);
     } finally {
