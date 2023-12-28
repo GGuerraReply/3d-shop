@@ -54,7 +54,7 @@ const Customizer = () => {
       //Call backend to generate AI powered image
       setGeneratingImg(true);
       const response = await axios.post(
-        //"http://localhost:7071"+
+        "http://localhost:7071"+
         "/api/dalle", {
         prompt: prompt,
         type: type,

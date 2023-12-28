@@ -7,6 +7,10 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
+  "engines": { 
+    "npm": ">=7.0.0",
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@azure/openai": "^1.0.0-beta.8",
     "abort-controller": "^3.0.0",
@@ -19,8 +23,6 @@
     "jimp": "^0.22.10",
     "mongoose": "^8.0.3",
     "nodemon": "^3.0.2",
-    "openai": "^3.2.1",
-    "pngjs": "^7.0.0",
-    "sharp": "^0.33.1"
+    "openai": "^3.2.1"
   }
 }

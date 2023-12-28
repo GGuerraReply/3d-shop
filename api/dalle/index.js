@@ -3,9 +3,6 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { createHandler } from 'azure-function-express';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
-import AbortController from "abort-controller";
-import sharp from 'sharp';
-import { PNG } from 'pngjs';
 import Jimp from 'jimp';
 
 dotenv.config();
@@ -29,8 +26,6 @@ app.post("/api/dalle", async (req, res) => {
     } else if(type === 'full') {
       fullprompt += '. The image has to be appliable to a T-Shirt 3D Model';
     }
-
-    console.log(fullprompt);
 
     const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
     const deploymentName = "dall-e";
@@ -78,6 +73,7 @@ app.post("/api/dalle", async (req, res) => {
 
     res.status(200).json({ photo: image });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ error: "ERROR: " + error.message });
   }
 });
