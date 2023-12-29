@@ -69,6 +69,28 @@ app.post("/api/dalle", async (req, res) => {
       
       // Ora 'base64Image' contiene l'immagine modificata come stringa base64
       image = base64Image;
+    } else if (type === 'full') {
+
+      let buffer = Buffer.from(image, 'base64');
+
+      let processingimage = await Jimp.read(buffer);
+      let bakedImage = await Jimp.read(process.env.WEBSITE_URL+"/Shadows.png");
+
+      // Sovrappone le immagini
+      const resultImage = processingimage.composite(bakedImage, 0, 0, {
+        mode: Jimp.BLEND_SOURCE_OVER,
+        opacitySource: 0.2,
+        opacityDest: 1
+      });
+
+      // Converte l'immagine risultante in un buffer
+      const resultBuffer = await resultImage.getBufferAsync(Jimp.AUTO);
+
+      // Converte il buffer in una stringa base64
+      const base64Image = resultBuffer.toString('base64');
+      
+      // Ora 'base64Image' contiene l'immagine modificata come stringa base64
+      image = base64Image;
     }
 
     res.status(200).json({ photo: image });

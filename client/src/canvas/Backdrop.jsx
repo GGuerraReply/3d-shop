@@ -19,7 +19,7 @@ const Backdrop = () => {
       frames={30}
       alphaTest={0.19}
       scale={2}
-      color={snap.color}
+      color={snap.isFullTexture?"#000000":snap.color}
       rotation={[Math.PI/2, 0, 0]}
       position={[0, 0, -0.14]}
     >

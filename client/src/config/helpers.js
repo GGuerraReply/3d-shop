@@ -32,3 +32,20 @@ export const getContrastingColor = (color) => {
   // Return black or white depending on the brightness
   return brightness > 148 ? "black" : "white";
 };
+
+export const isContrastingColor = (color) => {
+  // Remove the '#' character if it exists
+  const hex = color.replace("#", "");
+
+  // Convert the hex string to RGB values
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  // Calculate the Euclidean distance between the color and white
+  const distance = Math.sqrt((r - 255) ** 2 + (g - 255) ** 2 + (b - 255) ** 2);
+
+  // Return true if the distance is less than a certain threshold
+  // This threshold can be adjusted depending on how close to white a color needs to be
+  return distance > 50;
+};

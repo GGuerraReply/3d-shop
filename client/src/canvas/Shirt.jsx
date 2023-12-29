@@ -33,7 +33,7 @@ const Shirt = () => {
         {snap.isFullTexture && (
           <Decal
             position={[0, 0, 0]}
-            rotation={[0, 0, 0.2]}
+            rotation={[0, 0, 0]}
             scale={1}
             map={fullTextre}
             depthTest={false}
@@ -43,7 +43,7 @@ const Shirt = () => {
         {snap.isLogoTexture && (
           <Decal
             position={[0, 0.04, 0.15]}
-            rotation={[0, 0, 0.2]}
+            rotation={[0, 0, 0]}
             scale={0.15}
             map={logoTextre}
             depthTest={false}
