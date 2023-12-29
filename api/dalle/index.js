@@ -74,7 +74,7 @@ app.post("/api/dalle", async (req, res) => {
       let buffer = Buffer.from(image, 'base64');
 
       let processingimage = await Jimp.read(buffer);
-      let bakedImage = await Jimp.read(process.env.ASSETTS_PATH+"/Shadows.png");
+      let bakedImage = await Jimp.read(process.env.ASSETS_PATH+"/Shadows.png");
 
       // Sovrappone le immagini
       const resultImage = processingimage.composite(bakedImage, 0, 0, {
