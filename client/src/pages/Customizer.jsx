@@ -69,7 +69,7 @@ const Customizer = () => {
 
       handleDecals(type, `data:image/png;base64,${data}`);
     } catch (error) {
-      alert(error);
+      alert("Copilot is very busy at the moment, give it another try");
     } finally {
       setGeneratingImg(false);
       setActiveEditorTab("");
