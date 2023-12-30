@@ -24,7 +24,7 @@ app.post("/api/dalle", async (req, res) => {
     if(type === 'logo') {
       fullprompt += '. The image has to be a stylized logo in fabric style';
     } else if(type === 'full') {
-      fullprompt += '. The image has to have only one subject';
+      fullprompt += '. The image has to have only one subject and must have a fabric texture';
     }
 
     const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
