@@ -24,7 +24,7 @@ app.post("/api/dalle", async (req, res) => {
     if(type === 'logo') {
       fullprompt += '. The image has to be a stylized logo in fabric style';
     } else if(type === 'full') {
-      fullprompt += '. The image has to be appliable to a T-Shirt 3D Model';
+      fullprompt += '. The image has to have only one subject';
     }
 
     const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
@@ -74,17 +74,26 @@ app.post("/api/dalle", async (req, res) => {
       let buffer = Buffer.from(image, 'base64');
 
       let processingimage = await Jimp.read(buffer);
-      let bakedImage = await Jimp.read(process.env.ASSETS_PATH+"/Shadows.png");
-
-      // Sovrappone le immagini
-      const resultImage = processingimage.composite(bakedImage, 0, 0, {
-        mode: Jimp.BLEND_SOURCE_OVER,
-        opacitySource: 0.2,
-        opacityDest: 1
-      });
+      // Duplica l'immagine
+      let secondImage = processingimage.clone();
+    
+      // Ruota la seconda immagine di 180 gradi
+      processingimage.rotate(180);
+      secondImage.rotate(180);
+    
+      // Ridimensiona le immagini per occupare metà dell'immagine finale
+      processingimage.resize(Jimp.AUTO, processingimage.bitmap.width / 2);
+      secondImage.resize(Jimp.AUTO, secondImage.bitmap.width / 2);
+    
+      // Crea un'immagine vuota con la stessa larghezza e il doppio dell'altezza
+      let finalImage = new Jimp(processingimage.bitmap.width * 2, processingimage.bitmap.height);
+    
+      // Posiziona le immagini nella metà superiore e inferiore dell'immagine finale
+      finalImage.composite(processingimage, 0, 0);
+      finalImage.composite(secondImage, processingimage.bitmap.width, 0);
 
       // Converte l'immagine risultante in un buffer
-      const resultBuffer = await resultImage.getBufferAsync(Jimp.AUTO);
+      const resultBuffer = await finalImage.getBufferAsync(Jimp.AUTO);
 
       // Converte il buffer in una stringa base64
       const base64Image = resultBuffer.toString('base64');
