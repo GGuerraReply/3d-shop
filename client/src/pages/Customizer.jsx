@@ -34,6 +34,7 @@ const Customizer = () => {
         return <FilePicker 
           file={file}
           setFile={setFile}
+          generatingImg={generatingImg}
           readFile={readFile}
         />;
       case 'aipicker':
@@ -115,8 +116,9 @@ const Customizer = () => {
 
   const readFile = async (type) => {
     reader(file).then(async (result) => {
-
       try {
+        //Call backend to generate AI powered image
+        setGeneratingImg(true);
         const response = await axios.post(
           "/api/file", {
           image: result.split(',')[1],
@@ -133,6 +135,7 @@ const Customizer = () => {
       } catch (error) {
         alert("Try with a different image");
       } finally {
+        setGeneratingImg(false);
         setActiveEditorTab("");
       }
     });
