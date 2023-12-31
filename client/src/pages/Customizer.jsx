@@ -63,13 +63,16 @@ const Customizer = () => {
         headers: {
           'Content-Type': 'text/plain'
         }
+      }).catch(function (error) {
+        alert(error.response.data.error);
       });
 
-      let data = await response.data.photo;
-
-      handleDecals(type, `data:image/png;base64,${data}`);
+      if(response){
+        let data = await response.data.photo;
+        handleDecals(type, `data:image/png;base64,${data}`);
+      }
     } catch (error) {
-      alert("Copilot is very busy at the moment, give it another try");
+        alert(error)
     } finally {
       setGeneratingImg(false);
       setActiveEditorTab("");

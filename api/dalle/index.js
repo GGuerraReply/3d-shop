@@ -33,7 +33,6 @@ app.post("/api/dalle", async (req, res) => {
     const responseFormat = "b64_json"
 
     const result = await client.getImages(deploymentName, fullprompt, { n, size, responseFormat });
-
     let resultImage = await imageProcessor(result.data[0].base64Data, type);
 
     res.status(200).json({ photo: resultImage });
