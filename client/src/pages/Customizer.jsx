@@ -55,7 +55,6 @@ const Customizer = () => {
       //Call backend to generate AI powered image
       setGeneratingImg(true);
       const response = await axios.post(
-        //"http://localhost:7071"+
         "/api/dalle", {
         prompt: prompt,
         type: type,
@@ -114,10 +113,28 @@ const Customizer = () => {
     downloadCanvasToImage(CanvasModel.current);
   }
 
-  const readFile = (type) => {
-    reader(file).then((result) => {
-      handleDecals(type, result);
-      setActiveEditorTab("");
+  const readFile = async (type) => {
+    reader(file).then(async (result) => {
+
+      try {
+        const response = await axios.post(
+          "/api/file", {
+          image: result.split(',')[1],
+          type: type,
+        }, {
+          headers: {
+            'Content-Type': 'text/plain'
+          }
+        });
+
+        let data = await response.data.photo;
+
+        handleDecals(type, `data:image/png;base64,${data}`);
+      } catch (error) {
+        alert("Try with a different image");
+      } finally {
+        setActiveEditorTab("");
+      }
     });
   }
 
